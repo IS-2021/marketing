@@ -1,7 +1,8 @@
 {
-  "name": "",
+  "name": "marketing-beauty-salon",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@9.13.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,8 +11,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.16.13",
     "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.2",
+    "astro": "^4.16.13",
+    "tailwindcss": "^3.4.15",
     "typescript": "^5.6.3"
   }
 }

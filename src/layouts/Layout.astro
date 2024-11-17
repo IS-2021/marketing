@@ -1,50 +1,65 @@
 ---
+import { businessInfo } from '../data/business';
+
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = businessInfo.description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="pl">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{title} | {businessInfo.name}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="min-h-screen flex flex-col">
+		<header class="bg-white shadow-sm">
+			<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+				<a href="/" class="font-serif text-2xl text-rose-600">{businessInfo.name}</a>
+				<div class="flex gap-6">
+					<a href="/" class="text-gray-600 hover:text-rose-600">Strona główna</a>
+					<a href="/uslugi" class="text-gray-600 hover:text-rose-600">Usługi</a>
+					<a href="/galeria" class="text-gray-600 hover:text-rose-600">Galeria</a>
+					<a href="/kontakt" class="text-gray-600 hover:text-rose-600">Kontakt</a>
+				</div>
+			</nav>
+		</header>
+
+		<main class="flex-grow">
+			<slot />
+		</main>
+
+		<footer class="bg-gray-50 mt-12">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div>
+						<h3 class="font-serif text-xl mb-4">{businessInfo.name}</h3>
+						<p class="text-gray-600">{businessInfo.description}</p>
+					</div>
+					<div>
+						<h3 class="font-serif text-xl mb-4">Kontakt</h3>
+						<p class="text-gray-600">{businessInfo.contact.address.street}</p>
+						<p class="text-gray-600">{businessInfo.contact.address.postcode} {businessInfo.contact.address.city}</p>
+						<p class="text-gray-600">{businessInfo.contact.phone}</p>
+						<p class="text-gray-600">{businessInfo.contact.email}</p>
+					</div>
+					<div>
+						<h3 class="font-serif text-xl mb-4">Godziny otwarcia</h3>
+						{businessInfo.openingHours.map(({ day, hours }) => (
+							<div class="flex justify-between text-gray-600">
+								<span>{day}</span>
+								<span>{hours}</span>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

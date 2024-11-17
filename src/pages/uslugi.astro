@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { services } from '../data/business';
+---
+
+<Layout title="Usługi">
+  <div class="bg-rose-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-serif text-4xl text-center text-gray-900">Nasze Usługi</h1>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="space-y-16">
+      {services.map((category) => (
+        <section>
+          <h2 class="font-serif text-2xl mb-8 text-gray-900 text-center">{category.category}</h2>
+          <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div class="divide-y divide-gray-200">
+              {category.items.map((service) => (
+                <div class="p-6 flex justify-between items-center hover:bg-gray-50">
+                  <div>
+                    <h3 class="text-lg font-medium text-gray-900">{service.name}</h3>
+                    <p class="text-sm text-gray-500">{service.duration}</p>
+                  </div>
+                  <p class="text-lg font-medium text-rose-600">{service.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout> 

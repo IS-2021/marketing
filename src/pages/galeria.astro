@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { galleryImages } from '../data/business';
+---
+
+<Layout title="Galeria">
+  <div class="bg-rose-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="font-serif text-4xl text-center text-gray-900">Galeria</h1>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+      {galleryImages.map((image) => (
+        <div class="break-inside-avoid">
+          <img
+            src={image.src}
+            alt={image.alt}
+            class="w-full h-auto rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            width={image.width}
+            height={image.height}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout> 
