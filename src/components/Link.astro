@@ -1,0 +1,14 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className } = Astro.props;
+
+const fullPath = `${import.meta.env.BASE_URL}${href}`.replace(/\/+/g, '/');
+---
+
+<a href={fullPath} class={className}>
+  <slot />
+</a> 

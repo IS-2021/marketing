@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { businessInfo, heroFeatures } from '../data/business';
+import { getImage } from "astro:assets";
+import Link from '../components/Link.astro';
 ---
 
 <Layout title="Strona główna">
@@ -14,12 +16,12 @@ import { businessInfo, heroFeatures } from '../data/business';
           <p class="text-lg text-gray-600 mb-8">
             {businessInfo.description}
           </p>
-          <a 
+          <Link 
             href="/kontakt" 
             class="inline-block bg-rose-600 text-white px-8 py-3 rounded-lg hover:bg-rose-700 transition-colors"
           >
             Umów wizytę
-          </a>
+          </Link>
         </div>
         <div class="relative aspect-[4/3]">
           <img 
@@ -60,12 +62,12 @@ import { businessInfo, heroFeatures } from '../data/business';
             Oferujemy szeroki zakres zabiegów kosmetycznych, wykonywanych przez doświadczonych specjalistów. 
             Używamy najwyższej jakości kosmetyków i nowoczesnego sprzętu, aby zapewnić najlepsze rezultaty.
           </p>
-          <a 
+          <Link 
             href="/uslugi" 
             class="inline-block bg-rose-600 text-white px-8 py-3 rounded-lg hover:bg-rose-700 transition-colors"
           >
             Zobacz nasze usługi
-          </a>
+          </Link>
         </div>
       </div>
     </div>
