@@ -22,11 +22,66 @@ const { title, description = businessInfo.description } = Astro.props;
 		<header class="bg-white shadow-sm">
 			<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 				<Link href="/" class="font-serif text-2xl text-rose-600">{businessInfo.name}</Link>
-				<div class="flex gap-6">
+				
+				<!-- Desktop Navigation -->
+				<div class="hidden sm:flex gap-6">
 					<Link href="/" class="text-gray-600 hover:text-rose-600">Strona główna</Link>
 					<Link href="/uslugi" class="text-gray-600 hover:text-rose-600">Usługi</Link>
 					<Link href="/galeria" class="text-gray-600 hover:text-rose-600">Galeria</Link>
 					<Link href="/kontakt" class="text-gray-600 hover:text-rose-600">Kontakt</Link>
+				</div>
+
+				<!-- Hamburger Button -->
+				<button
+					id="menu-button"
+					class="sm:hidden p-2 text-gray-600 hover:text-rose-600"
+					aria-label="Menu"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="h-6 w-6"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16"
+						/>
+					</svg>
+				</button>
+
+				<!-- Mobile Navigation Overlay -->
+				<div
+					id="mobile-menu"
+					class="fixed inset-0 bg-white z-50 hidden flex-col items-center justify-center space-y-8 sm:hidden"
+				>
+					<button
+						id="close-menu"
+						class="absolute top-4 right-4 p-2 text-gray-600 hover:text-rose-600"
+						aria-label="Close menu"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-6 w-6"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					</button>
+					<Link href="/" class="text-xl text-gray-600 hover:text-rose-600">Strona główna</Link>
+					<Link href="/uslugi" class="text-xl text-gray-600 hover:text-rose-600">Usługi</Link>
+					<Link href="/galeria" class="text-xl text-gray-600 hover:text-rose-600">Galeria</Link>
+					<Link href="/kontakt" class="text-xl text-gray-600 hover:text-rose-600">Kontakt</Link>
 				</div>
 			</nav>
 		</header>
@@ -61,5 +116,23 @@ const { title, description = businessInfo.description } = Astro.props;
 				</div>
 			</div>
 		</footer>
+
+		<script>
+			const menuButton = document.getElementById('menu-button');
+			const closeButton = document.getElementById('close-menu');
+			const mobileMenu = document.getElementById('mobile-menu');
+
+			menuButton?.addEventListener('click', () => {
+				mobileMenu?.classList.remove('hidden');
+				mobileMenu?.classList.add('flex');
+				document.body.style.overflow = 'hidden';
+			});
+
+			closeButton?.addEventListener('click', () => {
+				mobileMenu?.classList.remove('flex');
+				mobileMenu?.classList.add('hidden');
+				document.body.style.overflow = '';
+			});
+		</script>
 	</body>
 </html>
